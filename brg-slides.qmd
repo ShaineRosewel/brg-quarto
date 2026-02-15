@@ -1,0 +1,153 @@
+---
+title: 'A "Quarto" Life Crisis'
+subtitle: 'Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeats each time changes are applied?'
+format:
+  jasa-pdf:
+    keep-tex: true    
+  revealjs:
+    title-slide-attributes:
+      data-background-image: images/bg.jpg
+      data-background-size: contain
+      data-background-opacity: "0.5"
+    transition: slide
+    background-transition: fade
+  beamer: 
+    aspectratio: 32
+    navigation: horizontal
+    theme: CambridgeUS
+    colortheme: lily
+  pdf:
+    pdf-engine: latexmk
+    pdf-engine-opt: -xelatex
+    link-citations: true 
+bibliography: "references.bib"
+nocite: |
+  @longrendertime
+  @quartomain
+execute:
+  echo: false
+  warning: false
+---
+
+## Quarto {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+::: incremental
+- enables you to weave together content and executable code into a finished presentation.
+- makes the process of creating and collaborating on scientific and technical documents dramatically better.
+- is Posit’s attempt to bring R Markdown to everyone! Unlike R Markdown, Quarto doesn’t have a dependency or requirement for R.
+:::
+
+## Minimum Requirements {background-image="images/bg.jpg" background-size=contain background-opacity='0.5'}
+
+for writing research papers in PDF
+
+:::: {.columns align=center}
+
+::: {.column width="33%" .fragment}
+![](images/RLogo.png){width="80%"}
+:::
+
+::: {.column width="33%" .fragment}
+![](images/RStudioLogo.png){width="80%"}
+:::
+
+::: {.column width="33%" .fragment}
+![](images/TinyTextLogo.png){width="80%"}
+:::
+
+::::
+
+::: {.fragment}
+### Note {.alert}
+RStudio v2022.07 and later includes support for editing and preview of Quarto documents.
+:::
+
+## Integrated workflow {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+R Markdown and Quarto allow for the seamless integration of narrative text, raw data, and executable code in a single document.
+
++ [Simpler syntax with Markdown](https://quarto.org/docs/authoring/markdown-basics.html)
++ You can hide or show your codes, hide or show results, choose to or not to evaluate codes
+
+## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+Results, tables, and figures update automatically when the underlying data changes, eliminating manual editing errors and ensuring the final paper remains up to date with the analysis.
+
+## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+```{r}
+#| echo: TRUE
+#| code-line-numbers: "|1-4|6-8|10-15|1,4"
+# load data
+library("kableExtra")
+data(iris)
+iris2 <- iris[4:6, c(1, 3, 2, 4, 5)]
+
+# calculations
+mean_sepal_length <- mean(iris2$Sepal.Length)
+mean_sepal_width <- mean(iris2$Sepal.Width)
+
+# format into a pretty table
+names(iris2) <- gsub('[.].+', '', names(iris2))
+rownames(iris2) <- NULL
+iris_table <- kable(iris2, booktabs = TRUE) %>%
+  add_header_above(c("Length" = 2, "Width" = 2, " " = 1)) %>%
+  add_header_above(c("Measurements" = 4, "More attributes" = 1))
+```
+
+
+## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+The means of sepal length and sepal width are `r round(mean_sepal_length,2)` and `r round(mean_sepal_width,2)`, respectively.
+
+```{r}
+#| echo: FALSE
+#| label: tbl-letters
+#| tbl-cap: "Iris Data"
+iris_table
+```
+
+## Multi-format outputs {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+One source file can be rendered into professional PDFs, Word documents or Tex files for collaborators, interactive HTML reports and presentations, as well as into beamer or PowerPoint. 
+
+::: incremental
+1. Specify the formats in your YAML.
+2. Use the terminal: `quarto render your_qmd.qmd --to beamer`. 
+:::
+
+## Automated elements {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+Complex tasks such as cross-referencing, bibliography management, plots and table formatting are handled programmatically, which maintains consistency throughout long documents.
+
+::: incremental
+1. Citations: According to @klein
+2. Cross-referencing: See @tbl-letters.
+3. Extensions for journals (e.g., [JASA](https://github.com/quarto-journals/jasa#readme))
+:::
+
+## Challenges
+
+
+{{< pagebreak >}}
+
+## References
+
+::: {#refs}
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
