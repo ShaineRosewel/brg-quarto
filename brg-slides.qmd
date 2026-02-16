@@ -1,6 +1,6 @@
 ---
 title: 'A "Quarto" Life Crisis'
-subtitle: 'Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeats each time changes are applied?'
+subtitle: 'Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeating each time changes are applied?'
 format:
   revealjs:
     title-slide-attributes:
@@ -20,6 +20,7 @@ format:
     slide-level: 2
     colorlinks: true
     toc: true
+    classoption: [handout]
   pdf:
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
