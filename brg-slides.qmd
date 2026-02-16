@@ -11,16 +11,21 @@ format:
     background-transition: fade
     number-sections: true
   beamer: 
+    pdf-engine: latexmk
+    pdf-engine-opt: -xelatex
     aspectratio: 32
     navigation: horizontal
     theme: CambridgeUS
     colortheme: lily
     slide-level: 2
+    colorlinks: true
+    toc: true
   pdf:
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
     link-citations: true 
     keep-tex: true
+    toc: true
 bibliography: "references.bib"
 nocite: |
   @longrendertime
@@ -49,7 +54,7 @@ for writing research papers in PDF
 :::
 
 ::: {.column width="33%" .fragment}
-![](images/RStudioLogo.png){width="80%"}
+![](images/RStudioLogo.png){#fig-rstudio width="80%"}
 :::
 
 ::: {.column width="33%" .fragment}
@@ -75,7 +80,7 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 | [[Links](https://quarto.org)]{.fragment fragment-index=3} | [`\href{url}{text}`]{.fragment fragment-index=3} | [`[text](url)`]{.fragment fragment-index=3} |
 | [`Code`]{.fragment fragment-index=4} | [`\texttt{fixed}`]{.fragment fragment-index=4} | [`` `fixed` ``]{.fragment fragment-index=4} |
 | [Images]{.fragment fragment-index=5} | [`\includegraphics{...}`]{.fragment fragment-index=5} | [`![](...)`]{.fragment fragment-index=5} |
-
+: LaTeX vs Markdown {#tbl-comparison}
 
 ::: {.fragment .fade-up}
 > **Verdict:** Less typing, more presenting for Quarto.
@@ -88,7 +93,6 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 | [**`eval`**]{.fragment fragment-index=1} | [**Evaluate the code.** If `false`, the code is never executed.]{.fragment fragment-index=1} |
 | [**`echo`**]{.fragment fragment-index=2} | [**Show the source code.** If `false`, the code stays hidden.]{.fragment fragment-index=2} |
 | [**`include`**]{.fragment fragment-index=3} | [**The "Master Switch".** If `false`, the code runs but neither the code nor the results appear in the slide.]{.fragment fragment-index=3} |
-
 : {tbl-colwidths="[20,80]"}
 
 ::: {.fragment}
@@ -122,14 +126,13 @@ iris_table <- kable(iris2, booktabs = TRUE) %>%
   add_header_above(c("Measurements" = 4, "More attributes" = 1))
 ```
 
-
 ## Output {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 The means of sepal length and sepal width are `r round(mean_sepal_length,2)` and `r round(mean_sepal_width,2)`, respectively.
 
 ```{r}
 #| echo: FALSE
-#| label: tbl-letters
+#| label: tbl-iris
 #| tbl-cap: "Iris Data"
 iris_table
 ```
@@ -141,11 +144,8 @@ One source file can be rendered into professional PDFs, Word documents or Tex fi
 ## Flexibility {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 ::: incremental
-1. Specify the formats in your YAML.
-2. Use the `Render` button or the terminal.
-   i) beamer
-   ii) html
-   iii) tex file
+1. Specify the [formats in your YAML](https://quarto.org/docs/reference/formats/html.html).
+2. Use the `Render` button or the terminal (`quarto render your_qmd.qmd --to format`).
 :::
 
 # Automated elements {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
@@ -155,18 +155,44 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 
 ## Cross-referencing {#sec-cross-referencing background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-{{< pagebreak >}}
+| [Cross-reference](https://quarto.org/docs/authoring/cross-references.html) | Text |
+| :--- | :--- |
+| [**Equations**]{.fragment fragment-index=1} | [Black-Scholes (@eq-black-scholes) is a mathematical model...]{.fragment fragment-index=1} |
+| [**Image**]{.fragment fragment-index=2} | [The data is shown in @fig-rstudio]{.fragment fragment-index=2} |
+| [**Tables**]{.fragment fragment-index=3} | [The data is shown in @tbl-iris; @tbl-comparison shows how LaTeX differs from Markdown.]{.fragment fragment-index=3} |
+: {tbl-colwidths="[20,80]"}
 
 ## Citations {#sec-citations background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-(e.g., [JASA](https://github.com/quarto-journals/jasa#readme))
+::: incremental
+- Bibliography file (`.bib`)
+- Syntax: According to `@klein` -> According to @klein
+- YAML
+  - `link-citations: true`
+  - `nocite` key in YAML
+- Citation style (`.csl`)
+- See other [citation specifications](https://quarto.org/docs/authoring/citations.html).
+:::
+
 
 ## Extensions for journals {#sec-journal-extensions background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
+[JASA](https://github.com/quarto-journals/jasa#readme)
+
 # Challenges {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-
-{{< pagebreak >}}
+:::{.incremental}
+::: incremental
+- Debugging
+  - error messages can be vague (especially YAML + LaTeX)
+  - one change may silently override defaults
+- Formatting differences across outputs
+  - looks great in RevealJS but breaks in PDF/Beamer
+  - fonts, spacing, figure placement behave differently
+- File organization
+  - managing images, references, and extensions can get messy
+:::
+:::
 
 # References {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
@@ -174,11 +200,16 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 :::
 
 
+# {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
+Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
 
-
-
-
+$$
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+  \mathrm r \mathrm C 
+$${#eq-black-scholes}
 
 
 
