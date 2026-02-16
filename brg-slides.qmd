@@ -2,8 +2,6 @@
 title: 'A "Quarto" Life Crisis'
 subtitle: 'Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeats each time changes are applied?'
 format:
-  jasa-pdf:
-    keep-tex: true    
   revealjs:
     title-slide-attributes:
       data-background-image: images/bg.jpg
@@ -11,15 +9,18 @@ format:
       data-background-opacity: "0.5"
     transition: slide
     background-transition: fade
+    number-sections: true
   beamer: 
     aspectratio: 32
     navigation: horizontal
     theme: CambridgeUS
     colortheme: lily
+    slide-level: 2
   pdf:
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
     link-citations: true 
+    keep-tex: true
 bibliography: "references.bib"
 nocite: |
   @longrendertime
@@ -29,7 +30,7 @@ execute:
   warning: false
 ---
 
-## Quarto {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+# Quarto {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 ::: incremental
 - enables you to weave together content and executable code into a finished presentation.
@@ -37,7 +38,7 @@ execute:
 - is Posit’s attempt to bring R Markdown to everyone! Unlike R Markdown, Quarto doesn’t have a dependency or requirement for R.
 :::
 
-## Minimum Requirements {background-image="images/bg.jpg" background-size=contain background-opacity='0.5'}
+## Minimum requirements {background-image="images/bg.jpg" background-size=contain background-opacity='0.5'}
 
 for writing research papers in PDF
 
@@ -57,23 +58,49 @@ for writing research papers in PDF
 
 ::::
 
-::: {.fragment}
-### Note {.alert}
+::: {.callout-note .fragment}
 RStudio v2022.07 and later includes support for editing and preview of Quarto documents.
 :::
 
-## Integrated workflow {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+# Integrated workflow {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 R Markdown and Quarto allow for the seamless integration of narrative text, raw data, and executable code in a single document.
 
-+ [Simpler syntax with Markdown](https://quarto.org/docs/authoring/markdown-basics.html)
-+ You can hide or show your codes, hide or show results, choose to or not to evaluate codes
+## Simple Markdown syntax {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+| Feature | LaTeX | Quarto |
+| :--- | :--- | :--- |
+| [**Bold**]{.fragment fragment-index=1} | [`\textbf{Heavy}`]{.fragment fragment-index=1} | [`**Light**`]{.fragment fragment-index=1} |
+| [*Italic*]{.fragment fragment-index=2} | [`\textit{Slanted}`]{.fragment fragment-index=2} | [`*Slanted*`]{.fragment fragment-index=2} |
+| [[Links](https://quarto.org)]{.fragment fragment-index=3} | [`\href{url}{text}`]{.fragment fragment-index=3} | [`[text](url)`]{.fragment fragment-index=3} |
+| [`Code`]{.fragment fragment-index=4} | [`\texttt{fixed}`]{.fragment fragment-index=4} | [`` `fixed` ``]{.fragment fragment-index=4} |
+| [Images]{.fragment fragment-index=5} | [`\includegraphics{...}`]{.fragment fragment-index=5} | [`![](...)`]{.fragment fragment-index=5} |
+
+
+::: {.fragment .fade-up}
+> **Verdict:** Less typing, more presenting for Quarto.
+:::
+
+## Code execution control {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+| Option | Description |
+| :--- | :--- |
+| [**`eval`**]{.fragment fragment-index=1} | [**Evaluate the code.** If `false`, the code is never executed.]{.fragment fragment-index=1} |
+| [**`echo`**]{.fragment fragment-index=2} | [**Show the source code.** If `false`, the code stays hidden.]{.fragment fragment-index=2} |
+| [**`include`**]{.fragment fragment-index=3} | [**The "Master Switch".** If `false`, the code runs but neither the code nor the results appear in the slide.]{.fragment fragment-index=3} |
+
+: {tbl-colwidths="[20,80]"}
+
+::: {.fragment}
+See other [execution options](https://quarto.org/docs/computations/execution-options.html).
+:::
+
+
+# Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 Results, tables, and figures update automatically when the underlying data changes, eliminating manual editing errors and ensuring the final paper remains up to date with the analysis.
 
-## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+## Input {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 ```{r}
 #| echo: TRUE
@@ -96,7 +123,7 @@ iris_table <- kable(iris2, booktabs = TRUE) %>%
 ```
 
 
-## Dynamic updating {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+## Output {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 The means of sepal length and sepal width are `r round(mean_sepal_length,2)` and `r round(mean_sepal_width,2)`, respectively.
 
@@ -107,31 +134,41 @@ The means of sepal length and sepal width are `r round(mean_sepal_length,2)` and
 iris_table
 ```
 
-## Multi-format outputs {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+# Multi-format outputs {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 One source file can be rendered into professional PDFs, Word documents or Tex files for collaborators, interactive HTML reports and presentations, as well as into beamer or PowerPoint. 
 
+## Flexibility {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
 ::: incremental
 1. Specify the formats in your YAML.
-2. Use the terminal: `quarto render your_qmd.qmd --to beamer`. 
+2. Use the `Render` button or the terminal.
+   i) beamer
+   ii) html
+   iii) tex file
 :::
 
-## Automated elements {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+# Automated elements {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-Complex tasks such as cross-referencing, bibliography management, plots and table formatting are handled programmatically, which maintains consistency throughout long documents.
+Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-referencing](#sec-cross-referencing)), bibliography management (See @sec-citations), journal formats (See @sec-journal-extensions), plots and table formatting are handled programmatically, which maintains consistency throughout long documents.
 
-::: incremental
-1. Citations: According to @klein
-2. Cross-referencing: See @tbl-letters.
-3. Extensions for journals (e.g., [JASA](https://github.com/quarto-journals/jasa#readme))
-:::
 
-## Challenges
+## Cross-referencing {#sec-cross-referencing background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+{{< pagebreak >}}
+
+## Citations {#sec-citations background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+(e.g., [JASA](https://github.com/quarto-journals/jasa#readme))
+
+## Extensions for journals {#sec-journal-extensions background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+
+# Challenges {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 
 {{< pagebreak >}}
 
-## References
+# References {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
 ::: {#refs}
 :::
