@@ -222,6 +222,39 @@
 <div class="quarto-title-authors">
 </div>
 
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table of contents</h2>
+<ul>
+<li><a href="#/quarto" id="/toc-quarto"><span class="header-section-number">1</span> Quarto</a>
+<ul>
+<li><a href="#/minimum-requirements" id="/toc-minimum-requirements"><span class="header-section-number">1.1</span> Minimum requirements</a></li>
+</ul></li>
+<li><a href="#/integrated-workflow" id="/toc-integrated-workflow"><span class="header-section-number">2</span> Integrated workflow</a>
+<ul>
+<li><a href="#/simple-markdown-syntax" id="/toc-simple-markdown-syntax"><span class="header-section-number">2.1</span> Simple Markdown syntax</a></li>
+<li><a href="#/code-execution-control" id="/toc-code-execution-control"><span class="header-section-number">2.2</span> Code execution control</a></li>
+</ul></li>
+<li><a href="#/dynamic-updating" id="/toc-dynamic-updating"><span class="header-section-number">3</span> Dynamic updating</a>
+<ul>
+<li><a href="#/input" id="/toc-input"><span class="header-section-number">3.1</span> Input</a></li>
+<li><a href="#/output" id="/toc-output"><span class="header-section-number">3.2</span> Output</a></li>
+</ul></li>
+<li><a href="#/multi-format-outputs" id="/toc-multi-format-outputs"><span class="header-section-number">4</span> Multi-format outputs</a>
+<ul>
+<li><a href="#/flexibility" id="/toc-flexibility"><span class="header-section-number">4.1</span> Flexibility</a></li>
+</ul></li>
+<li><a href="#/automated-elements" id="/toc-automated-elements"><span class="header-section-number">5</span> Automated elements</a>
+<ul>
+<li><a href="#/sec-cross-referencing" id="/toc-sec-cross-referencing"><span class="header-section-number">5.1</span> Cross-referencing</a></li>
+<li><a href="#/sec-citations" id="/toc-sec-citations"><span class="header-section-number">5.2</span> Citations</a></li>
+<li><a href="#/sec-journal-extensions" id="/toc-sec-journal-extensions"><span class="header-section-number">5.3</span> Extensions for journals</a></li>
+</ul></li>
+<li><a href="#/challenges" id="/toc-challenges"><span class="header-section-number">6</span> Challenges</a></li>
+<li><a href="#/references" id="/toc-references"><span class="header-section-number">7</span> References</a></li>
+<li><a href="#/section" id="/toc-section"><span class="header-section-number">8</span> </a></li>
+</ul>
+</nav>
 </section>
 <section>
 <section id="quarto" class="title-slide slide level1 center" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="1">
@@ -329,7 +362,7 @@ Table&nbsp;1: LaTeX vs Markdown
 <section id="code-execution-control" class="slide level2 scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.2">
 <h2><span class="header-section-number">2.2</span> Code execution control</h2>
 <ul>
-<li class="fragment"><strong><code>echo</code></strong>: <strong>Show the source code.</strong> If <code>false</code>, the code stays hidden.
+<li class="fragment"><p><strong><code>echo</code></strong>: <strong>Show the source code.</strong> If <code>false</code>, the code stays hidden.</p>
 <ul>
 <li class="fragment"><code>#| echo: true</code></li>
 </ul>
@@ -347,7 +380,7 @@ Table&nbsp;1: LaTeX vs Markdown
 <pre><code>[1] "I want only the result."</code></pre>
 </div>
 </div></li>
-<li class="fragment"><strong><code>eval</code></strong>: <strong>Evaluate the code.</strong> If <code>false</code>, the code is never executed.
+<li class="fragment"><p><strong><code>eval</code></strong>: <strong>Evaluate the code.</strong> If <code>false</code>, the code is never executed.</p>
 <ul>
 <li class="fragment"><code>#| eval: true</code></li>
 </ul>
@@ -371,23 +404,6 @@ Table&nbsp;1: LaTeX vs Markdown
 </section>
 <section id="input" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.1">
 <h2><span class="header-section-number">3.1</span> Input</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-4|6-8|10-15|1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># load data</span></span>
-<span id="cb5-2"><a href=""></a><span class="fu">library</span>(<span class="st">"kableExtra"</span>)</span>
-<span id="cb5-3"><a href=""></a><span class="fu">data</span>(iris)</span>
-<span id="cb5-4"><a href=""></a>iris2 <span class="ot">&lt;-</span> iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
-<span id="cb5-5"><a href=""></a></span>
-<span id="cb5-6"><a href=""></a><span class="co"># calculations</span></span>
-<span id="cb5-7"><a href=""></a>mean_sepal_length <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Length)</span>
-<span id="cb5-8"><a href=""></a>mean_sepal_width <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Width)</span>
-<span id="cb5-9"><a href=""></a></span>
-<span id="cb5-10"><a href=""></a><span class="co"># format into a pretty table</span></span>
-<span id="cb5-11"><a href=""></a><span class="fu">names</span>(iris2) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'[.].+'</span>, <span class="st">''</span>, <span class="fu">names</span>(iris2))</span>
-<span id="cb5-12"><a href=""></a><span class="fu">rownames</span>(iris2) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb5-13"><a href=""></a>iris_table <span class="ot">&lt;-</span> <span class="fu">kable</span>(iris2, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-14"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Length"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Width"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-15"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Measurements"</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">"More attributes"</span> <span class="ot">=</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
 </section>
 <section id="output" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.2">
 <h2><span class="header-section-number">3.2</span> Output</h2>
@@ -518,7 +534,7 @@ Width
 <h2><span class="header-section-number">5.2</span> Citations</h2>
 <ul>
 <li class="fragment">Bibliography file (<code>.bib</code>)</li>
-<li class="fragment">Syntax: According to <code>@klein</code> -&gt; According to <span class="citation" data-cites="klein">Klein, Wright, &amp; Wieczorek (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></li>
+<li class="fragment">Syntax: According to <code>@klein</code> -&gt; According to <span class="citation" data-cites="klein">Klein, Wright, and Wieczorek (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></li>
 <li class="fragment">YAML
 <ul>
 <li class="fragment"><code>link-citations: true</code></li>
@@ -554,15 +570,15 @@ Width
 
 <section id="references" class="title-slide slide level1 smaller scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="7">
 <h1><span class="header-section-number">7</span> References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-longrendertime" class="csl-entry" role="listitem">
-jpatteet. (2022, November 22). Quarto rendering pdf, running xelatex 10 times. Retrieved February 15, 2025, from <a href="https://github.com/quarto-dev/quarto-cli/issues/3518">https://github.com/quarto-dev/quarto-cli/issues/3518</a>
+jpatteet. 2022. <span>“Quarto Rendering Pdf, Running Xelatex 10 Times.”</span> November 22, 2022. <a href="https://github.com/quarto-dev/quarto-cli/issues/3518">https://github.com/quarto-dev/quarto-cli/issues/3518</a>.
 </div>
 <div id="ref-klein" class="csl-entry" role="listitem">
-Klein, M., Wright, T., &amp; Wieczorek, J. (2020). A joint confidence region for an overall ranking of populations. <em>Journal of the Royal Statistical Society</em>, 589–606.
+Klein, Martin, Tommy Wright, and Jerzy Wieczorek. 2020. <span>“A Joint Confidence Region for an Overall Ranking of Populations.”</span> <em>Journal of the Royal Statistical Society</em>, 589–606.
 </div>
 <div id="ref-quartomain" class="csl-entry" role="listitem">
-Posit. (n.d.). Comprehensive guide to using quarto. Retrieved from <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>
+Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
 </div>
 </div>
 </section>
