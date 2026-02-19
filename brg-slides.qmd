@@ -27,13 +27,14 @@ format:
     link-citations: true 
     keep-tex: true
     toc: true
-bibliography: "references.bib"
+bibliography: references.bib
 nocite: |
   @longrendertime
   @quartomain
 execute:
   echo: false
   warning: false
+csl: apa-6th-edition.csl
 ---
 
 # Quarto {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
@@ -76,7 +77,7 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 
 | Feature | LaTeX | Quarto |
 | :--- | :--- | :--- |
-| [**Bold**]{.fragment fragment-index=1} | [`\textbf{Heavy}`]{.fragment fragment-index=1} | [`**Light**`]{.fragment fragment-index=1} |
+| [**Bold**]{.fragment fragment-index=1} | [`\textbf{Heavy}`]{.fragment fragment-index=1} | [`**Heavy**`]{.fragment fragment-index=1} |
 | [*Italic*]{.fragment fragment-index=2} | [`\textit{Slanted}`]{.fragment fragment-index=2} | [`*Slanted*`]{.fragment fragment-index=2} |
 | [[Links](https://quarto.org)]{.fragment fragment-index=3} | [`\href{url}{text}`]{.fragment fragment-index=3} | [`[text](url)`]{.fragment fragment-index=3} |
 | [`Code`]{.fragment fragment-index=4} | [`\texttt{fixed}`]{.fragment fragment-index=4} | [`` `fixed` ``]{.fragment fragment-index=4} |
@@ -87,14 +88,36 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 > **Verdict:** Less typing, more presenting for Quarto.
 :::
 
-## Code execution control {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
+## Code execution control {.scrollable background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
 
-| Option | Description |
-| :--- | :--- |
-| [**`eval`**]{.fragment fragment-index=1} | [**Evaluate the code.** If `false`, the code is never executed.]{.fragment fragment-index=1} |
-| [**`echo`**]{.fragment fragment-index=2} | [**Show the source code.** If `false`, the code stays hidden.]{.fragment fragment-index=2} |
-| [**`include`**]{.fragment fragment-index=3} | [**The "Master Switch".** If `false`, the code runs but neither the code nor the results appear in the slide.]{.fragment fragment-index=3} |
-: {tbl-colwidths="[20,80]"}
+::: incremental
+- **`echo`**: **Show the source code.** If `false`, the code stays hidden.
+  - `#| echo: true`
+  
+  ```{r}
+  #| echo: true
+  print("I want to show the codes.")
+  ```
+  - `#| echo: false`
+
+  ```{r}
+  #| echo: false
+  print("I want only the result.")
+  ```
+- **`eval`**: **Evaluate the code.** If `false`, the code is never executed.
+  - `#| eval: true`
+  
+  ```{r}
+  #| eval: true
+  print("Run the code.")
+  ```
+  - `#| eval: false`
+
+  ```{r}
+  #| eval: false
+  print("Don't run the code.")
+  ```
+:::
 
 ::: {.fragment}
 See other [execution options](https://quarto.org/docs/computations/execution-options.html).
@@ -113,7 +136,7 @@ Results, tables, and figures update automatically when the underlying data chang
 # load data
 library("kableExtra")
 data(iris)
-iris2 <- iris[4:6, c(1, 3, 2, 4, 5)]
+iris2 <- iris[1:3, c(1, 3, 2, 4, 5)]
 
 # calculations
 mean_sepal_length <- mean(iris2$Sepal.Length)
@@ -147,6 +170,8 @@ One source file can be rendered into professional PDFs, Word documents or Tex fi
 ::: incremental
 1. Specify the [formats in your YAML](https://quarto.org/docs/reference/formats/html.html).
 2. Use the `Render` button or the terminal (`quarto render your_qmd.qmd --to format`).
+  - try for beamer
+  - try for html
 :::
 
 # Automated elements {background-image=images/bg.jpg background-size=contain background-opacity='0.5'}
@@ -159,8 +184,8 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 | [Cross-reference](https://quarto.org/docs/authoring/cross-references.html) | Text |
 | :--- | :--- |
 | [**Equations**]{.fragment fragment-index=1} | [Black-Scholes (@eq-black-scholes) is a mathematical model...]{.fragment fragment-index=1} |
-| [**Image**]{.fragment fragment-index=2} | [The data is shown in @fig-rstudio]{.fragment fragment-index=2} |
-| [**Tables**]{.fragment fragment-index=3} | [The data is shown in @tbl-iris; @tbl-comparison shows how LaTeX differs from Markdown.]{.fragment fragment-index=3} |
+| [**Image**]{.fragment fragment-index=2} | [See @fig-rstudio]{.fragment fragment-index=2} |
+| [**Tables**]{.fragment fragment-index=3} | [@tbl-comparison shows how LaTeX differs from Markdown. The data is shown in @tbl-iris]{.fragment fragment-index=3} |
 : {tbl-colwidths="[20,80]"}
 
 ## Citations {#sec-citations background-image=images/bg.jpg background-size=contain background-opacity='0.5'}

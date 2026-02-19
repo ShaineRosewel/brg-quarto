@@ -293,7 +293,7 @@ Table&nbsp;1: LaTeX vs Markdown
 <tr class="odd">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="1"><strong>Bold</strong></span></td>
 <td style="text-align: left;"><span class="fragment" data-fragment-index="1"><code>\textbf{Heavy}</code></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><code>**Light**</code></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><code>**Heavy**</code></span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="2"><em>Italic</em></span></td>
@@ -326,34 +326,40 @@ Table&nbsp;1: LaTeX vs Markdown
 </blockquote>
 </div>
 </section>
-<section id="code-execution-control" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.2">
+<section id="code-execution-control" class="slide level2 scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.2">
 <h2><span class="header-section-number">2.2</span> Code execution control</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 80%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Option</th>
-<th style="text-align: left;">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><strong><code>eval</code></strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="1"><strong>Evaluate the code.</strong> If <code>false</code>, the code is never executed.</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><strong><code>echo</code></strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="2"><strong>Show the source code.</strong> If <code>false</code>, the code stays hidden.</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><strong><code>include</code></strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><strong>The “Master Switch”.</strong> If <code>false</code>, the code runs but neither the code nor the results appear in the slide.</span></td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li class="fragment"><strong><code>echo</code></strong>: <strong>Show the source code.</strong> If <code>false</code>, the code stays hidden.
+<ul>
+<li class="fragment"><code>#| echo: true</code></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">print</span>(<span class="st">"I want to show the codes."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "I want to show the codes."</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment"><code>#| echo: false</code></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "I want only the result."</code></pre>
+</div>
+</div></li>
+<li class="fragment"><strong><code>eval</code></strong>: <strong>Evaluate the code.</strong> If <code>false</code>, the code is never executed.
+<ul>
+<li class="fragment"><code>#| eval: true</code></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Run the code."</code></pre>
+</div>
+</div>
+<ul>
+<li class="fragment"><code>#| eval: false</code></li>
+</ul></li>
+</ul>
 <div class="fragment">
 <p>See other <a href="https://quarto.org/docs/computations/execution-options.html">execution options</a>.</p>
 </div>
@@ -366,26 +372,26 @@ Table&nbsp;1: LaTeX vs Markdown
 <section id="input" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.1">
 <h2><span class="header-section-number">3.1</span> Input</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-4|6-8|10-15|1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># load data</span></span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(<span class="st">"kableExtra"</span>)</span>
-<span id="cb1-3"><a href=""></a><span class="fu">data</span>(iris)</span>
-<span id="cb1-4"><a href=""></a>iris2 <span class="ot">&lt;-</span> iris[<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
-<span id="cb1-5"><a href=""></a></span>
-<span id="cb1-6"><a href=""></a><span class="co"># calculations</span></span>
-<span id="cb1-7"><a href=""></a>mean_sepal_length <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Length)</span>
-<span id="cb1-8"><a href=""></a>mean_sepal_width <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Width)</span>
-<span id="cb1-9"><a href=""></a></span>
-<span id="cb1-10"><a href=""></a><span class="co"># format into a pretty table</span></span>
-<span id="cb1-11"><a href=""></a><span class="fu">names</span>(iris2) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'[.].+'</span>, <span class="st">''</span>, <span class="fu">names</span>(iris2))</span>
-<span id="cb1-12"><a href=""></a><span class="fu">rownames</span>(iris2) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb1-13"><a href=""></a>iris_table <span class="ot">&lt;-</span> <span class="fu">kable</span>(iris2, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-14"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Length"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Width"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb1-15"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Measurements"</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">"More attributes"</span> <span class="ot">=</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-4|6-8|10-15|1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># load data</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(<span class="st">"kableExtra"</span>)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">data</span>(iris)</span>
+<span id="cb5-4"><a href=""></a>iris2 <span class="ot">&lt;-</span> iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
+<span id="cb5-5"><a href=""></a></span>
+<span id="cb5-6"><a href=""></a><span class="co"># calculations</span></span>
+<span id="cb5-7"><a href=""></a>mean_sepal_length <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Length)</span>
+<span id="cb5-8"><a href=""></a>mean_sepal_width <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a><span class="co"># format into a pretty table</span></span>
+<span id="cb5-11"><a href=""></a><span class="fu">names</span>(iris2) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'[.].+'</span>, <span class="st">''</span>, <span class="fu">names</span>(iris2))</span>
+<span id="cb5-12"><a href=""></a><span class="fu">rownames</span>(iris2) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb5-13"><a href=""></a>iris_table <span class="ot">&lt;-</span> <span class="fu">kable</span>(iris2, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Length"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Width"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Measurements"</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">"More attributes"</span> <span class="ot">=</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="output" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.2">
 <h2><span class="header-section-number">3.2</span> Output</h2>
-<p>The means of sepal length and sepal width are 5 and 3.53, respectively.</p>
+<p>The means of sepal length and sepal width are 4.9 and 3.23, respectively.</p>
 <div class="cell">
 <div id="tbl-iris" class="cell quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-tbl">
@@ -430,24 +436,24 @@ Width
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">4.6</td>
-<td style="text-align: right;">1.5</td>
-<td style="text-align: right;">3.1</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">1.4</td>
+<td style="text-align: right;">3.5</td>
 <td style="text-align: right;">0.2</td>
 <td style="text-align: left;">setosa</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">4.9</td>
 <td style="text-align: right;">1.4</td>
-<td style="text-align: right;">3.6</td>
+<td style="text-align: right;">3.0</td>
 <td style="text-align: right;">0.2</td>
 <td style="text-align: left;">setosa</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5.4</td>
-<td style="text-align: right;">1.7</td>
-<td style="text-align: right;">3.9</td>
-<td style="text-align: right;">0.4</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">1.3</td>
+<td style="text-align: right;">3.2</td>
+<td style="text-align: right;">0.2</td>
 <td style="text-align: left;">setosa</td>
 </tr>
 </tbody>
@@ -469,6 +475,10 @@ Width
 <li class="fragment">Specify the <a href="https://quarto.org/docs/reference/formats/html.html">formats in your YAML</a>.</li>
 <li class="fragment">Use the <code>Render</code> button or the terminal (<code>quarto render your_qmd.qmd --to format</code>).</li>
 </ol>
+<ul>
+<li class="fragment">try for beamer</li>
+<li class="fragment">try for html</li>
+</ul>
 </section></section>
 <section>
 <section id="automated-elements" class="title-slide slide level1 center" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="5">
@@ -495,11 +505,11 @@ Width
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="2"><strong>Image</strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="2">The data is shown in <a href="#/fig-rstudio" class="quarto-xref">Figure&nbsp;1</a></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2">See <a href="#/fig-rstudio" class="quarto-xref">Figure&nbsp;1</a></span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="3"><strong>Tables</strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="3">The data is shown in <a href="#/tbl-iris" class="quarto-xref">Table&nbsp;2</a>; <a href="#/tbl-comparison" class="quarto-xref">Table&nbsp;1</a> shows how LaTeX differs from Markdown.</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="3"><a href="#/tbl-comparison" class="quarto-xref">Table&nbsp;1</a> shows how LaTeX differs from Markdown. The data is shown in <a href="#/tbl-iris" class="quarto-xref">Table&nbsp;2</a></span></td>
 </tr>
 </tbody>
 </table>
@@ -508,7 +518,7 @@ Width
 <h2><span class="header-section-number">5.2</span> Citations</h2>
 <ul>
 <li class="fragment">Bibliography file (<code>.bib</code>)</li>
-<li class="fragment">Syntax: According to <code>@klein</code> -&gt; According to <span class="citation" data-cites="klein">Klein, Wright, and Wieczorek (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></li>
+<li class="fragment">Syntax: According to <code>@klein</code> -&gt; According to <span class="citation" data-cites="klein">Klein, Wright, &amp; Wieczorek (<a href="#/references" role="doc-biblioref" onclick="">2020</a>)</span></li>
 <li class="fragment">YAML
 <ul>
 <li class="fragment"><code>link-citations: true</code></li>
@@ -544,15 +554,15 @@ Width
 
 <section id="references" class="title-slide slide level1 smaller scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="7">
 <h1><span class="header-section-number">7</span> References</h1>
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-longrendertime" class="csl-entry" role="listitem">
-jpatteet. 2022. <span>“Quarto Rendering Pdf, Running Xelatex 10 Times.”</span> November 22, 2022. <a href="https://github.com/quarto-dev/quarto-cli/issues/3518">https://github.com/quarto-dev/quarto-cli/issues/3518</a>.
+jpatteet. (2022, November 22). Quarto rendering pdf, running xelatex 10 times. Retrieved February 15, 2025, from <a href="https://github.com/quarto-dev/quarto-cli/issues/3518">https://github.com/quarto-dev/quarto-cli/issues/3518</a>
 </div>
 <div id="ref-klein" class="csl-entry" role="listitem">
-Klein, Martin, Tommy Wright, and Jerzy Wieczorek. 2020. <span>“A Joint Confidence Region for an Overall Ranking of Populations.”</span> <em>Journal of the Royal Statistical Society</em>, 589–606.
+Klein, M., Wright, T., &amp; Wieczorek, J. (2020). A joint confidence region for an overall ranking of populations. <em>Journal of the Royal Statistical Society</em>, 589–606.
 </div>
 <div id="ref-quartomain" class="csl-entry" role="listitem">
-Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
+Posit. (n.d.). Comprehensive guide to using quarto. Retrieved from <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>
 </div>
 </div>
 </section>
