@@ -10,7 +10,6 @@ format:
     transition: slide
     background-transition: fade
     number-sections: true
-    toc: true
   beamer: 
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
@@ -48,20 +47,6 @@ execute:
 ## Minimum requirements {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 for writing research papers in PDF
-
-:::::: {.columns align="center"}
-::: {.column .fragment width="33%"}
-![](images/RLogo.png){width="80%"}
-:::
-
-::: {.column .fragment width="33%"}
-![](images/RStudioLogo.png){#fig-rstudio width="80%"}
-:::
-
-::: {.column .fragment width="33%"}
-![](images/TinyTextLogo.png){width="80%"}
-:::
-::::::
 
 ::: {.callout-note .fragment}
 RStudio v2022.07 and later includes support for editing and preview of Quarto documents.
