@@ -9,6 +9,7 @@
 <link href="brg-slides_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.25">
 
+  <meta name="dcterms.date" content="2026-02-23">
   <title>A “Quarto” Life Crisis</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -118,6 +119,8 @@
   <link href="brg-slides_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="brg-slides_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="brg-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="brg-slides_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="brg-slides_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="brg-slides_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -222,6 +225,11 @@
 <div class="quarto-title-authors">
 </div>
 
+  <p class="date">2026-02-23</p>
+</section>
+<section class="slide level2">
+
+<p></p>
 </section>
 <section>
 <section id="quarto" class="title-slide slide level1 center" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="1">
@@ -235,6 +243,25 @@
 <section id="minimum-requirements" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="1.1">
 <h2><span class="header-section-number">1.1</span> Minimum requirements</h2>
 <p>for writing research papers in PDF</p>
+<!--::: {.content-hidden when-format="pdf"}-->
+<div class="columns" data-align="center">
+<div class="column fragment" style="width:33%;">
+<p><img data-src="images/RLogo.png" style="width:80.0%"></p>
+</div><div class="column fragment" style="width:33%;">
+<div id="fig-rstudio" class="quarto-float quarto-figure quarto-figure-center" width="80%">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="images/RStudioLogo.png" id="fig-rstudio" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div><div class="column fragment" style="width:33%;">
+<p><img data-src="images/TinyTextLogo.png" style="width:80.0%"></p>
+</div></div>
+<!--:::-->
 <div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -309,8 +336,26 @@ Table&nbsp;1: LaTeX vs Markdown
 </blockquote>
 </div>
 </section>
-<section id="code-execution-control" class="slide level2 scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.2">
-<h2><span class="header-section-number">2.2</span> Code execution control</h2>
+<section id="inline-and-display-math" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.2">
+<h2><span class="header-section-number">2.2</span> Inline and Display Math</h2>
+<ul>
+<li class="fragment"><p>In physics, the mass-energy equivalence is stated by the equation <span class="math inline">\(E=mc^2\)</span>, discovered in 1905 by Albert Einstein.</p></li>
+<li class="fragment"><p><span id="eq-black-scholes"><span class="math display">\[
+\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+  \mathrm r \mathrm C
+\tag{1}\]</span></span></p></li>
+<li class="fragment"><p><span id="eq-vertex-expansion"><span class="math display">\[
+\begin{aligned}
+f(x) &amp;= a(x - h)^2 + k \\
+     &amp;= a(x^2 - 2xh + h^2) + k
+\end{aligned}
+\tag{2}\]</span></span></p></li>
+</ul>
+</section>
+<section id="code-execution-control" class="slide level2 scrollable" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="2.3">
+<h2><span class="header-section-number">2.3</span> Code execution control</h2>
 <ul>
 <li class="fragment"><p><strong><code>echo</code></strong>: <strong>Show the source code.</strong> If <code>false</code>, the code stays hidden.</p>
 <ul>
@@ -354,6 +399,23 @@ Table&nbsp;1: LaTeX vs Markdown
 </section>
 <section id="input" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.1">
 <h2><span class="header-section-number">3.1</span> Input</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="|1-4|6-8|10-15|1,4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># load data</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(<span class="st">"kableExtra"</span>)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">data</span>(iris)</span>
+<span id="cb5-4"><a href=""></a>iris2 <span class="ot">&lt;-</span> iris[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">5</span>)]</span>
+<span id="cb5-5"><a href=""></a></span>
+<span id="cb5-6"><a href=""></a><span class="co"># calculations</span></span>
+<span id="cb5-7"><a href=""></a>mean_sepal_length <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Length)</span>
+<span id="cb5-8"><a href=""></a>mean_sepal_width <span class="ot">&lt;-</span> <span class="fu">mean</span>(iris2<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb5-9"><a href=""></a></span>
+<span id="cb5-10"><a href=""></a><span class="co"># format into a pretty table</span></span>
+<span id="cb5-11"><a href=""></a><span class="fu">names</span>(iris2) <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">'[.].+'</span>, <span class="st">''</span>, <span class="fu">names</span>(iris2))</span>
+<span id="cb5-12"><a href=""></a><span class="fu">rownames</span>(iris2) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb5-13"><a href=""></a>iris_table <span class="ot">&lt;-</span> <span class="fu">kable</span>(iris2, <span class="at">booktabs =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-14"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Length"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">"Width"</span> <span class="ot">=</span> <span class="dv">2</span>, <span class="st">" "</span> <span class="ot">=</span> <span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-15"><a href=""></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">"Measurements"</span> <span class="ot">=</span> <span class="dv">4</span>, <span class="st">"More attributes"</span> <span class="ot">=</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 </section>
 <section id="output" class="slide level2" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="3.2">
 <h2><span class="header-section-number">3.2</span> Output</h2>
@@ -467,11 +529,11 @@ Width
 <tbody>
 <tr class="odd">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="1"><strong>Equations</strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="1">Black-Scholes (<a href="#/eq-black-scholes" class="quarto-xref">Equation&nbsp;1</a>) is a mathematical model…</span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="1">Black-Scholes (<a href="#/eq-black-scholes" class="quarto-xref">Equation&nbsp;1</a>) is a mathematical model…<a href="#/eq-vertex-expansion" class="quarto-xref">Equation&nbsp;2</a> shows…</span></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="2"><strong>Image</strong></span></td>
-<td style="text-align: left;"><span class="fragment" data-fragment-index="2">See <strong>?@fig-rstudio</strong></span></td>
+<td style="text-align: left;"><span class="fragment" data-fragment-index="2">See <a href="#/fig-rstudio" class="quarto-xref">Figure&nbsp;1</a></span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span class="fragment" data-fragment-index="3"><strong>Tables</strong></span></td>
@@ -508,7 +570,7 @@ Width
 </ul></li>
 <li class="fragment">Formatting differences across outputs
 <ul>
-<li class="fragment">looks great in RevealJS but breaks in PDF/Beamer</li>
+<li class="fragment">looks great in RevealJS but breaks in PDF</li>
 <li class="fragment">fonts, spacing, figure placement behave differently</li>
 </ul></li>
 <li class="fragment">File organization
@@ -531,17 +593,6 @@ Klein, Martin, Tommy Wright, and Jerzy Wieczorek. 2020. <span>“A Joint Confide
 Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="https://quarto.org/docs/guide/">https://quarto.org/docs/guide/</a>.
 </div>
 </div>
-</section>
-
-<section id="section" class="title-slide slide level1 center" data-background-image="images/bg.jpg" data-background-size="contain" data-background-opacity="0.5" data-number="8">
-<h1><span class="header-section-number">8</span> </h1>
-<p>Black-Scholes (<a href="#/eq-black-scholes" class="quarto-xref">Equation&nbsp;1</a>) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:</p>
-<p><span id="eq-black-scholes"><span class="math display">\[
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
-  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
-  \mathrm r \mathrm C
-\tag{1}\]</span></span></p>
 
 </section>
     </div>
@@ -558,6 +609,7 @@ Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="htt
   <script src="brg-slides_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="brg-slides_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="brg-slides_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="brg-slides_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="brg-slides_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -579,7 +631,8 @@ Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="htt
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -750,7 +803,7 @@ Posit. n.d. <span>“Comprehensive Guide to Using Quarto.”</span> <a href="htt
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,

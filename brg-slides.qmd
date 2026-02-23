@@ -10,6 +10,8 @@ format:
     transition: slide
     background-transition: fade
     number-sections: true
+    date: today
+    chalkboard: true
   beamer: 
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
@@ -21,6 +23,7 @@ format:
     colorlinks: true
     toc: true
     classoption: [handout]
+    date: last-modified
   pdf:
     pdf-engine: latexmk
     pdf-engine-opt: -xelatex
@@ -31,10 +34,9 @@ bibliography: references.bib
 nocite: |
   @longrendertime
   @quartomain
-execute:
-  echo: false
-  warning: false
 ---
+
+\pagebreak
 
 # Quarto {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
@@ -47,6 +49,22 @@ execute:
 ## Minimum requirements {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 for writing research papers in PDF
+
+<!--::: {.content-hidden when-format="pdf"}-->
+:::::: {.columns align="center"}
+::: {.column .fragment width="33%"}
+![](images/RLogo.png){width="80%"}
+:::
+
+::: {.column .fragment width="33%"}
+![](images/RStudioLogo.png){#fig-rstudio width="80%"}
+:::
+
+::: {.column .fragment width="33%"}
+![](images/TinyTextLogo.png){width="80%"}
+:::
+::::::
+<!--:::-->
 
 ::: {.callout-note .fragment}
 RStudio v2022.07 and later includes support for editing and preview of Quarto documents.
@@ -70,6 +88,26 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 
 ::: {.fragment .fade-up}
 > **Verdict:** Less typing, more presenting for Quarto.
+:::
+
+## Inline and Display Math {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+
+::: {.incremental}
+- In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+
+- $$
+  \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+  \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+    + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+    \mathrm r \mathrm C 
+  $$ {#eq-black-scholes}
+
+- $$
+  \begin{aligned}
+  f(x) &= a(x - h)^2 + k \\
+       &= a(x^2 - 2xh + h^2) + k
+  \end{aligned}
+  $$ {#eq-vertex-expansion}
 :::
 
 ## Code execution control {.scrollable background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
@@ -119,6 +157,7 @@ Results, tables, and figures update automatically when the underlying data chang
 ## Input {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 ```{r}
+#| echo: TRUE
 #| code-line-numbers: "|1-4|6-8|10-15|1,4"
 # load data
 library("kableExtra")
@@ -170,7 +209,7 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 
 | [Cross-reference](https://quarto.org/docs/authoring/cross-references.html) | Text |
 |:-----------------------------------|:-----------------------------------|
-| [**Equations**]{.fragment fragment-index="1"} | [Black-Scholes (@eq-black-scholes) is a mathematical model...]{.fragment fragment-index="1"} |
+| [**Equations**]{.fragment fragment-index="1"} | [Black-Scholes (@eq-black-scholes) is a mathematical model...@eq-vertex-expansion shows...]{.fragment fragment-index="1"} |
 | [**Image**]{.fragment fragment-index="2"} | [See @fig-rstudio]{.fragment fragment-index="2"} |
 | [**Tables**]{.fragment fragment-index="3"} | [@tbl-comparison shows how LaTeX differs from Markdown. The data is shown in @tbl-iris]{.fragment fragment-index="3"} |
 
@@ -199,7 +238,7 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
     -   error messages can be vague (especially YAML + LaTeX)
     -   one change may silently override defaults
 -   Formatting differences across outputs
-    -   looks great in RevealJS but breaks in PDF/Beamer
+    -   looks great in RevealJS but breaks in PDF
     -   fonts, spacing, figure placement behave differently
 -   File organization
     -   managing images, references, and extensions can get messy
@@ -209,14 +248,3 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 
 ::: {#refs}
 :::
-
-#  {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
-
-Black-Scholes (@eq-black-scholes) is a mathematical model that seeks to explain the behavior of financial derivatives, most commonly options:
-
-$$
-\frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-\frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
-  + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
-  \mathrm r \mathrm C 
-$$ {#eq-black-scholes}
