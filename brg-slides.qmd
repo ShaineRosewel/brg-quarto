@@ -12,11 +12,9 @@ format:
     number-sections: true
     date: today
     chalkboard: true
+    output-file: my_revealjs
   beamer: 
-    pdf-engine: latexmk
-    pdf-engine-opt: -xelatex
     aspectratio: 32
-    navigation: horizontal
     theme: CambridgeUS
     colortheme: lily
     slide-level: 2
@@ -24,16 +22,18 @@ format:
     toc: true
     classoption: [handout]
     date: last-modified
+    output-file: my_beamer
   pdf:
-    pdf-engine: latexmk
-    pdf-engine-opt: -xelatex
     link-citations: true 
     keep-tex: true
     toc: true
+    output-file: my_pdf
 bibliography: references.bib
 nocite: |
   @longrendertime
   @quartomain
+pdf-engine: latexmk
+pdf-engine-opt: -xelatex
 ---
 
 \pagebreak
@@ -46,25 +46,18 @@ nocite: |
 -   is Posit’s attempt to bring R Markdown to everyone! Unlike R Markdown, Quarto doesn’t have a dependency or requirement for R.
 :::
 
-## Minimum requirements {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## Minimum requirements {.scrollable background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
-for writing research papers in PDF
+for writing research papers
 
-<!--::: {.content-hidden when-format="pdf"}-->
-:::::: {.columns align="center"}
-::: {.column .fragment width="33%"}
-![](images/RLogo.png){width="80%"}
+
+::: {layout="[[1, 1, 1]]"}
+![R Language](images/RLogo.png){#fig-r-logo .fragment width="75%"}
+
+![RStudio IDE](images/RStudioLogo.png){#fig-rstudio .fragment width="70%"}
+
+![TinyTex](images/TinyTextLogo.png){#fig-tinytex .fragment width="50%"}
 :::
-
-::: {.column .fragment width="33%"}
-![](images/RStudioLogo.png){#fig-rstudio width="80%"}
-:::
-
-::: {.column .fragment width="33%"}
-![](images/TinyTextLogo.png){width="80%"}
-:::
-::::::
-<!--:::-->
 
 ::: {.callout-note .fragment}
 RStudio v2022.07 and later includes support for editing and preview of Quarto documents.
@@ -77,7 +70,7 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 ## Simple Markdown syntax {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 | Feature | LaTeX | Quarto |
-|:-----------------------|:-----------------------|:-----------------------|
+|:-------------------------|:------------------------|:--------------------|
 | [**Bold**]{.fragment fragment-index="1"} | [`\textbf{Heavy}`]{.fragment fragment-index="1"} | [`**Heavy**`]{.fragment fragment-index="1"} |
 | [*Italic*]{.fragment fragment-index="2"} | [`\textit{Slanted}`]{.fragment fragment-index="2"} | [`*Slanted*`]{.fragment fragment-index="2"} |
 | [[Links](https://quarto.org)]{.fragment fragment-index="3"} | [`\href{url}{text}`]{.fragment fragment-index="3"} | [`[text](url)`]{.fragment fragment-index="3"} |
@@ -92,25 +85,25 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 
 ## Inline and Display Math {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
-::: {.incremental}
-- In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
+::: incremental
+-   In physics, the mass-energy equivalence is stated by the equation $E=mc^2$, discovered in 1905 by Albert Einstein.
 
-- $$
-  \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
-  \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
-    + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
-    \mathrm r \mathrm C 
-  $$ {#eq-black-scholes}
+-   $$
+    \frac{\partial \mathrm C}{ \partial \mathrm t } + \frac{1}{2}\sigma^{2} \mathrm S^{2}
+    \frac{\partial^{2} \mathrm C}{\partial \mathrm S^2}
+      + \mathrm r \mathrm S \frac{\partial \mathrm C}{\partial \mathrm S}\ =
+      \mathrm r \mathrm C 
+    $$ {#eq-black-scholes}
 
-- $$
-  \begin{aligned}
-  f(x) &= a(x - h)^2 + k \\
-       &= a(x^2 - 2xh + h^2) + k
-  \end{aligned}
-  $$ {#eq-vertex-expansion}
+-   $$
+    \begin{aligned}
+    f(x) &= a(x - h)^2 + k \\
+         &= a(x^2 - 2xh + h^2) + k
+    \end{aligned}
+    $$ {#eq-vertex-expansion}
 :::
 
-## Code execution control {.scrollable background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## [Code execution control]((https://quarto.org/docs/computations/execution-options.html)) {.scrollable background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 ::: incremental
 -   **`echo`**: **Show the source code.** If `false`, the code stays hidden.
@@ -144,10 +137,6 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
     #| eval: false
     print("Don't run the code.")
     ```
-:::
-
-::: fragment
-See other [execution options](https://quarto.org/docs/computations/execution-options.html).
 :::
 
 # Dynamic updating {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
@@ -191,31 +180,32 @@ iris_table
 
 One source file can be rendered into professional PDFs, Word documents or Tex files for collaborators, interactive HTML reports and presentations, as well as into beamer or PowerPoint.
 
-## Flexibility {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## [Flexibility](https://quarto.org/docs/reference/formats/html.html) {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 ::: incremental
-1.  Specify the [formats in your YAML](https://quarto.org/docs/reference/formats/html.html).
+1.  Specify the formats in your YAML.
 2.  Use the `Render` button or the terminal (`quarto render your_qmd.qmd --to format`).
 
 -   try for beamer
 -   try for html
+-   try for pdf
 :::
 
 # Automated elements {background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-referencing](#sec-cross-referencing)), bibliography management (See @sec-citations), journal formats (See @sec-journal-extensions), plots and table formatting are handled programmatically, which maintains consistency throughout long documents.
 
-## Cross-referencing {#sec-cross-referencing background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## [Cross-referencing]((https://quarto.org/docs/authoring/cross-references.html)) {#sec-cross-referencing background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
-| [Cross-reference](https://quarto.org/docs/authoring/cross-references.html) | Text |
-|:-----------------------------------|:-----------------------------------|
-| [**Equations**]{.fragment fragment-index="1"} | [Black-Scholes (@eq-black-scholes) is a mathematical model...@eq-vertex-expansion shows...]{.fragment fragment-index="1"} |
+| Cross-reference | Text |
+|:---------------------------|:-------------------------------------------|
+| [**Equations**]{.fragment fragment-index="1"} | [Black-Scholes (@eq-black-scholes) is a mathematical model... @eq-vertex-expansion shows...]{.fragment fragment-index="1"} |
 | [**Image**]{.fragment fragment-index="2"} | [See @fig-rstudio]{.fragment fragment-index="2"} |
 | [**Tables**]{.fragment fragment-index="3"} | [@tbl-comparison shows how LaTeX differs from Markdown. The data is shown in @tbl-iris]{.fragment fragment-index="3"} |
 
 : {tbl-colwidths="\[20,80\]"}
 
-## Citations {#sec-citations background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## [Citations](https://quarto.org/docs/authoring/citations.html) {#sec-citations background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 ::: incremental
 -   Bibliography file (`.bib`)
@@ -224,7 +214,6 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
     -   `link-citations: true`
     -   `nocite` key in YAML
 -   Citation style (`.csl`)
--   See other [citation specifications](https://quarto.org/docs/authoring/citations.html).
 :::
 
 ## Extensions for journals {#sec-journal-extensions background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
