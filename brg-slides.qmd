@@ -1,37 +1,37 @@
 ---
-title: 'A "Quarto" Life Crisis'
-subtitle: 'Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeating each time changes are applied?'
+title: A "Quarto" Life Crisis
+subtitle: Are you still living the "Copy-Paste" lifestyle? Moving data into tables, images and screenshots into folders, and repeating each time changes are applied?
 format:
   revealjs:
     title-slide-attributes:
       data-background-image: images/bg.jpg
       data-background-size: contain
-      data-background-opacity: "0.5"
+      data-background-opacity: '0.5'
     transition: slide
     background-transition: fade
-    number-sections: true
+    number-sections: TRUE
     date: today
-    chalkboard: true
+    chalkboard: TRUE
     output-file: my_revealjs
   beamer: 
     aspectratio: 32
     theme: CambridgeUS
     colortheme: lily
     slide-level: 2
-    colorlinks: true
-    toc: true
+    colorlinks: TRUE
+    toc: TRUE
     classoption: [handout]
     date: last-modified
     output-file: my_beamer
   pdf:
-    link-citations: true 
-    keep-tex: true
-    toc: true
+    link-citations: TRUE 
+    keep-tex: TRUE
+    toc: TRUE
     output-file: my_pdf
 bibliography: references.bib
 nocite: |
-  @longrendertime
   @quartomain
+  @longrendertime
 pdf-engine: latexmk
 pdf-engine-opt: -xelatex
 ---
@@ -106,35 +106,36 @@ R Markdown and Quarto allow for the seamless integration of narrative text, raw 
 ## [Code execution control]((https://quarto.org/docs/computations/execution-options.html)) {.scrollable background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 ::: incremental
--   **`echo`**: **Show the source code.** If `false`, the code stays hidden.
+-   **`echo`**: **Show the source code.** If `FALSE`, the code stays hidden.
 
-    -   `#| echo: true`
+    -   `#| echo: TRUE`
+    
 
     ```{r}
-    #| echo: true
+    #| echo: TRUE
     print("I want to show the codes.")
     ```
 
-    -   `#| echo: false`
+    -   `#| echo: FALSE`
 
     ```{r}
-    #| echo: false
+    #| echo: FALSE
     print("I want only the result.")
     ```
 
--   **`eval`**: **Evaluate the code.** If `false`, the code is never executed.
+-   **`eval`**: **Evaluate the code.** If `FALSE`, the code is never executed.
 
-    -   `#| eval: true`
+    -   `#| eval: TRUE`
 
     ```{r}
-    #| eval: true
+    #| eval: TRUE
     print("Run the code.")
     ```
 
-    -   `#| eval: false`
+    -   `#| eval: FALSE`
 
     ```{r}
-    #| eval: false
+    #| eval: FALSE
     print("Don't run the code.")
     ```
 :::
@@ -195,7 +196,7 @@ One source file can be rendered into professional PDFs, Word documents or Tex fi
 
 Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-referencing](#sec-cross-referencing)), bibliography management (See @sec-citations), journal formats (See @sec-journal-extensions), plots and table formatting are handled programmatically, which maintains consistency throughout long documents.
 
-## [Cross-referencing]((https://quarto.org/docs/authoring/cross-references.html)) {#sec-cross-referencing background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
+## [Cross-referencing](https://quarto.org/docs/authoring/cross-references.html) {#sec-cross-referencing background-image="images/bg.jpg" background-size="contain" background-opacity="0.5"}
 
 | Cross-reference | Text |
 |:---------------------------|:-------------------------------------------|
@@ -211,7 +212,7 @@ Complex tasks such as cross-referencing (See @sec-cross-referencing, see [Cross-
 -   Bibliography file (`.bib`)
 -   Syntax: According to `@klein` -\> According to @klein
 -   YAML
-    -   `link-citations: true`
+    -   `link-citations: TRUE`
     -   `nocite` key in YAML
 -   Citation style (`.csl`)
 :::
